@@ -24,7 +24,7 @@ public class MessageSnsAWSSender implements MessageSender {
     private String topicSns;
 
     @Autowired
-    public MessageSnsAWSSender(AmazonSNS amazonSNS, @Value("${/config/backend_EMEA-TEST/notification.topicarn}") String topicSns) {
+    public MessageSnsAWSSender(AmazonSNS amazonSNS, @Value("${notification.topicarn}") String topicSns) {
         this.amazonSNS = amazonSNS;
         this.topicSns = topicSns;
     }

@@ -1,5 +1,7 @@
 package com.awstraining.backend.config;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +32,8 @@ public class SNSConfig {
         if (snsAccessKey != null || snsSecretKey != null) {
             return AmazonSNSClientBuilder
                 .standard()
+                .withRegion(awsRegion)
+                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(snsAccessKey, snsSecretKey)))
                 .build();
         } else {
             return AmazonSNSClientBuilder
