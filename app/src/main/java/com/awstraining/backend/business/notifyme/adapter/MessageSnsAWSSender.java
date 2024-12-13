@@ -6,6 +6,7 @@ import com.amazonaws.services.sns.model.PublishResult;
 import com.awstraining.backend.business.notifyme.MessageSender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class MessageSnsAWSSender implements MessageSender {
 
     private String topicSns;
 
-    //    @Autowired
+    @Autowired
     public MessageSnsAWSSender(AmazonSNS amazonSNS, @Value("${notification.topicarn}") String topicSns) {
         this.amazonSNS = amazonSNS;
         this.topicSns = topicSns;
