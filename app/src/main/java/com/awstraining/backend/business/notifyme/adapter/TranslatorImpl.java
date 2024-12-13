@@ -33,8 +33,8 @@ public class TranslatorImpl implements Translator {
         //  2. Call translate.
         TranslateTextResult result = amazonTranslate
             .translateText(new TranslateTextRequest().withText(notifyMeDO.text()))
-            .withSourceLanguageCode("pl")
-            .withTargetLanguageCode("en");
+            .withSourceLanguageCode(notifyMeDO.sourceLc())
+            .withTargetLanguageCode(notifyMeDO.targetLc());
         //  3. Log information about successful translated message.
         LOGGER.info("Successfully translated text: " + notifyMeDO.text() + " to: " + result.getTargetLanguageCode());
         //  4. Return translated message
