@@ -5,6 +5,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.comprehend.AmazonComprehend;
 import com.amazonaws.services.comprehend.AmazonComprehendClientBuilder;
+import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,9 +31,12 @@ public class ComprehendSentimentConfig {
     //  3. Think how to connect with AWS Service from your local pc.
     @Bean
     AmazonComprehend configureComprehendClient() {
-        return AmazonComprehendClientBuilder.standard()
-            .withRegion(awsRegion)
-            .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(snsAccessKey, snsSecretKey)))
+//        return AmazonComprehendClientBuilder.standard()
+//            .withRegion(awsRegion)
+//            .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(snsAccessKey, snsSecretKey)))
+//            .build();
+        return AmazonComprehendClientBuilder
+            .standard()
             .build();
     }
 }
