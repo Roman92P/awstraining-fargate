@@ -6,6 +6,7 @@ import com.amazonaws.services.comprehend.model.DetectSentimentResult;
 import com.awstraining.backend.business.notifyme.Sentiment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +19,7 @@ public class SentimentDetectorImpl implements Sentiment {
     // TODO: lab3
     //  1. Inject AWS AmazonComprehend from configuration ComprehendSentimentConfig.
     private final AmazonComprehend amazonComprehend;
-//    @Autowired
+    @Autowired
     public SentimentDetectorImpl(AmazonComprehend amazonComprehend) {
 
         this.amazonComprehend = amazonComprehend;
