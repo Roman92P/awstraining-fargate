@@ -13,24 +13,28 @@ public class NotifyMeService {
     //  1. Inject Translator
     private final Translator translator;
     // TODO lab3
-    //  1. Inject sentiment detector
+    //  1. Inject sentiment detector\
+    private final Sentiment sentiment;
     @Autowired
-    public NotifyMeService(MessageSender messageSender, Translator translator) {
+    public NotifyMeService(MessageSender messageSender, Translator translator, Sentiment sentiment) {
 
         this.messageSender = messageSender;
         this.translator = translator;
+        this.sentiment = sentiment;
     }
     
     public String notifyMe(NotifyMeDO notifyMe) {
       
         // TODO: lab1
         //  1. Send text using sender.
-        messageSender.send(notifyMe.text());
+        
         //  2. Return sent message.
         // TODO: lab2
         //  1. Translate text from using translator.
         //  2. Change sending of text to "translated text" and return it.
         String translated = translator.translate(notifyMe);
+        String sentimentResult = sentiment.detectSentiment(notifyMe.sourceLc(), notifyMe.text());
+        messageSender.send(sentimentResult + ". " + translated);
         // TODO: lab3
         //  1. Detect sentiment of translated message.
         //  2. Change sending of text to "setiment: translated text" and return it.
